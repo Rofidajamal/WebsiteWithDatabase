@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Apply functions
+        </title>
+        <meta name = "viewport" content="width= device-width, intial-scale= 1.0" />
+        <link rel ="stylesheet" href = "style.css"/>
+
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing:border-box ;
+                font-family: sans-serif;
+
+            }
+            body{
+                display: flex;
+                height: 100vh;
+                justify-content: center;
+                align-items: center;
+                background: url("background.jpg");
+                background-size: cover;
+                
+
+
+            }
+            .container {
+               width: 100%;
+               max-width: 650px;
+               background-color: rgba(0, 0, 3, 0.5);
+               padding: 28px;
+               margin: 0 28px;
+               border-radius: 10px;
+               box-shadow: inset -2px 2px 2px white;
+            }
+
+            .form-title{
+                font-size: 25px;
+                font-weight: 600;
+                text-align: center;
+                padding-bottom: 10px;
+                color: white;
+                text-shadow: 2px 2px 2px black;
+                border-bottom: solid 1px white;
+            }
+            .form-body{
+                justify-content: space-between;
+                padding: 20px 0;
+                font-size: 26px;
+                font-weight: 600;
+
+            }
+
+            .submit-buttun {
+                display: block;
+                width: 100%;
+                margin-top: 10px;
+                font-size: 20px;
+                padding: 10px;
+                border-radius: 4px;
+                color :white;
+                background-color: rgb(0, 170, 255);
+
+            }
+
+
+        </style>
+        
+    </head>
+    <body>
+        <div class = "container">
+            <h1 class="form-title">Applying biological functions on Insulin sequences</h1><br><br>
+            <div class = "form">
+
+                <form action="\functions.php" method="post" onsubmit="return validateForm() && validateFunction()">
+                    <div class = "form-body">
+                        <label for = "dnaSeq" style="color: white; text-shadow: 3px 3px 3px black;"> Enter your DNA sequence:</label><br><br>
+                        <textarea name = "dnaSeq" id = "dnaSeq" rows ="5" cols="50" style="width: 550px; width: 500;"></textarea> <br><br>
+                        <label for="function-select" style="color: white;text-shadow: 3px 3px 3px black;">Select a function:</label><br>
+                        <select id="function-select" name="function-select" style="width: 150px;height: 30px;"><br>
+                            <option value="gc-content" >GC-content</option>
+                            <option value="transcription">Transcription</option>
+                            <option value ="Complement">Complement</option>
+                            <option value ="Reverse">reverse</option>
+                            <option value ="Reverse-Complement">Reverse complement</option>
+                            <option value="translate" >Translate</option>
+                            
+                        </select><br><br>
+
+                        <input type="submit" value="Submit" class="submit-buttun">
+                    </div>
+                </form>
+            </div>
+                    
+
+        </div>
+
+        <script>
+    function validateForm() {
+        var dnaSeq = document.getElementById("dnaSeq").value;
+         if (dnaSeq == "") {
+            alert("Please enter a DNA sequence");
+              return false;
+             }
+  
+         var dnaformula = /^[ACGTacgt]+$/;
+         if (!dnaformula.test(dnaSeq)) {
+            alert("Invalid DNA sequence , Please enter only A, C, G, or T");
+            return false;
+            }
+  
+         return true;
+        }        
+ 
+    function validateFunction() {
+            var functionSelect = document.getElementById("function-select");
+            var selectedFunction = functionSelect.options[functionSelect.selectedIndex].value;
+            switch (selectedFunction) {
+                case "gc-content":
+                    break;
+                case "transcription":
+                    break;
+                case "Complement":
+                    break;
+                case "Reverse":
+                    break;
+                case "Reverse-Complement":
+                    break;
+                case "translate":
+                    break;
+                default:
+                    alert("Please select a function");
+                    return false;
+            }
+            alert("The function applied to the DNA successfully!");
+            return true;
+        
+}        </script>
+    </body>
+</html>

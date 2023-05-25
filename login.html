@@ -1,0 +1,94 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title> Registeration Form </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="style2.css" />
+
+</head>
+<body>
+    <header>
+        <img src="logo.png" />
+    </header>
+
+    <div class="formcontent" id="formcontent">
+
+        <form id="form1" name="form1" action="/userDB.php" target="_blank" method="post" onsubmit="return validateForm()">
+
+
+            <label for="username_input">user name:</label>
+            <input id="username_input" name="username" type="text" required/><br><br>
+        
+            <label for="email_input">Email:</label>
+            <input id="email_input" name="email" type="email" required /><br> <br>
+            <label for="pass_input">Password:</label>
+            <input id="pass_input" name="pass" type="password" required/><br><br><br>
+            
+
+            <input type="submit" value="Submit" style="background-color: rgb(0, 221, 255); padding: 10px; margin-top: 10px;width: 100%;font-weight: 600;" />
+            <input type="reset" value="Reset" style="background-color: rgb(0, 221, 255); padding: 10px; margin-top: 5px;width: 100%;font-weight: 600;"/>
+        </form>
+
+    </div>
+
+    <script>
+
+    function validateuser() {
+      var unameInput = document.getElementById('username_input');
+      var unameValue = unameInput.value.trim();
+      if (unameValue.length < 8) {
+        alert("Username should be have at least 8 ");
+        return false;
+      } else if (unameValue.length > 40) {
+          alert("Username should not be greater than 40 ");
+          return false;
+      } else if (unameValue === "") {
+          alert("Username is required.");
+          return false;
+      } else {
+      return true;
+      }
+    }    
+     function validateEmail() {
+          const mailInput = document.getElementById('email_input');
+          const mail = mailInput.value.trim();
+          const formula = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+          
+          if (mail === "") {
+            alert("Please enter your email ");
+            return false;
+          } else if (!formula.test(mail)) {
+            alert("Please enter a valid email");
+            return false;
+          }
+          
+          return true;
+        }
+
+     function validatepass() {
+           var passwordInput =  document.forms["form1"]["pass"];
+           var password = passwordInput.value.trim();
+           if (password === "") {
+                 alert("Password is required");
+                  return false;
+                 }
+           if (password.length < 8) {
+                alert("Password should be have at least 8");
+                return false;
+                 }
+          
+           return true;
+    }
+        function validateForm() {
+          if ( validateuser() && validateEmail() && validatepass()) {
+            alert("Form submitted successfully!");
+            return true;
+          } else {
+            return false;
+          }
+        }
+    </script>
+</body>
+</html>
